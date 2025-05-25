@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satellite Image Classifier</title>
+    <style>
+        /* Full-page satellite background */
+        body {
+            background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4NDAiIGhlaWdodD0iNTI1IiB2aWV3Qm94PSIwIDAgODQwIDUyNSI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgc3R5bGU9ImZpbGw6I2NmZDRkYjtmaWxsLW9wYWNpdHk6IDAuMTsiLz48L3N2Zz4=") no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Upload Form */
+        #upload-form {
+            margin: auto;
+            width: 60%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 3px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Stylish Button */
+        button {
+            font-size: 20px;
+            padding: 12px 25px;
+            border: none;
+            background-color: #ff9800;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 15px #ff9800;
+        }
+
+        /* Classification Result */
+        #result {
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px;
+            display: inline-block;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 60px; color: black; margin-top: 20px;">Satellite Image Classifier</h1>
+
+    
+    <div style="background: rgba(255,255,255,0.8); color: black; padding: 20px; width: 60%; margin: 20px auto; border-radius: 10px;">
+    <p>
+        This project is based on multispectral satellite image interpretation. It uses machine learning to analyze different land cover types such as water bodies, vegetation, deserts, and cloudy regions.
+    </p>
+    <p>
+        The classifier predicts the type of area from the uploaded satellite image using trained deep learning models.
+    </p>
+</div>
+
+    <!-- Image Upload Form -->
+    <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <br><br>
+        <button type="submit">Upload & Classify</button>
+    
+        <div style="margin-top: 30px; background: rgba(0,0,0,0.6); padding: 15px; border-radius: 10px;">
+    <h3>Class Labels:</h3>
+    <p>0 – Cloudy ☁️</p>
+    <p>1 – Desert 🏜️</p>
+    <p>2 – Green Area 🌳</p>
+    <p>3 – Water 💧</p>
+</div>
+
+    </form>
+
+    <!-- Display Classification Result -->
+    <div id="result"></div>
+
+    <script>
+        // Smooth fade-in effect for result display
+        document.getElementById("upload-form").addEventListener("submit", function(event) {
+            document.getElementById("result").style.opacity = "1";
+        });
+    </script>
+</body>
+</html>
